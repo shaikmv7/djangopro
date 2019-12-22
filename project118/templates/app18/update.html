@@ -1,0 +1,26 @@
+<html>
+<body>
+<form action="/saved/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<table align="center" border="2">
+    <tr>
+        <th>Update Employee</th>
+    </tr>
+    <tr>
+        <th><input type="number" name="idno" value="{{ obj.idno }}" readonly></th>
+    </tr>
+    <tr>
+        <th><input type="text" name="name" value="{{ obj.name }}"></th>
+    </tr>
+    <tr>
+        <th><input type="file" name="photo" value="{{ obj.photo.url }}"></th>
+    </tr>
+    <tr>
+        <th>
+            <input type="submit" value="Save">
+        </th>
+    </tr>
+</table>
+    </form>
+</body>
+</html>

@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.showindex),
     path('saved/',views.savedetails),
-    path('update/',views.update)
+    path('update/',views.update),
+    path('del/',views.deleteemp)
 ]
 
 if settings.DEBUG:
