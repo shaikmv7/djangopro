@@ -1,0 +1,70 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+<body>
+
+<table align="center" border="0">
+    <tr>
+        <th>
+            <form action="/saved/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <table align="center" border="2">
+                <tr>
+                    <th>Employee Registration</th>
+                </tr>
+                <tr>
+                    <th><input type="number" name="idno" placeholder="IDNO"></th>
+                </tr>
+                <tr>
+                    <th><input type="text" name="name" placeholder="NAME"></th>
+                </tr>
+                <tr>
+                    <th><input type="file" name="photo"></th>
+                </tr>
+                <tr>
+                    <th>
+                        <input type="submit" value="Register">
+                    </th>
+                </tr>
+            </table>
+                </form>
+        </th>
+        <th>
+            {% if data %}
+                <table align="center" border="2">
+                <tr>
+                    <th colspan="5">All Employee Details</th>
+                </tr>
+                <tr>
+                    <th>IDNO</th>
+                    <th>NAME</th>
+                    <th>SALARY</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                {% for x in data %}
+                    <tr>
+                    <th>{{ x.idno }}</th>
+                    <th>{{ x.name }}</th>
+                    <th><img src="{{ x.photo.url }}" width="100px" height="75px"></th>
+                    <th>
+                        <form action="/update/" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ x.idno }}" name="idno">
+                        <input type="submit" value="Yes">
+                            </form>
+                    </th>
+                    <th><a href="/del/?idn={{ x.idno }}">Yes</a> </th>
+                    </tr>
+                {% endfor %}
+                </table>
+
+                {% else %}
+                <h4>Employees are not Available</h4>
+            {% endif %}
+        </th>
+    </tr>
+</table>
+
+</body>
+</html>
